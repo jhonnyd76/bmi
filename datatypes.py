@@ -1,0 +1,26 @@
+print("Hallo Welt")
+weight1 = (76,76.5)
+weight2 = (65, 64.5)
+weights = (weight1, weight2)
+print(weights)
+greet = "Hallo Welt"
+print(greet[2])
+print(greet[1:4])
+weights=weight1+weight2
+print(weights)
+print("a" in greet)
+print(max(greet))
+print(min(greet))
+print(greet.index("a"))
+print(greet.count("l"))
+gewichte = [76,76.5,77]
+del gewichte[1]
+print(gewichte)
+gewichte.insert(0,74.5)
+print(gewichte)
+gewichte.remove(76)
+print(gewichte)
+greet=greet.capitalize()
+print(greet)
+greet=greet.replace("l","n")
+print(greet)
