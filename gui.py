@@ -1,28 +1,40 @@
 from tkinter import *
 
-master = Tk()
-master.focus = True
 
-nameFrame = Frame(master)
-firstFrame = Frame(master)
-btnFrame = Frame(master)
-nameFrame.pack()
-firstFrame.pack()
-btnFrame.pack()
-lblName = Label(nameFrame, text="Name:", width=30,anchor=W)
-lblFirstname = Label(firstFrame, text="Firstname:", width=30, anchor=W)
-entName = Entry(nameFrame, width=30)
-entFirstname = Entry(firstFrame, width=30)
+class Rahmen(Frame):
+    def __init__(self, master=None, lblText=""):
+        Frame.__init__(self, master)
+        self.pack()
+        self.label = Label(self, text=lblText, width=30, anchor=W)
+        self.label.pack(side="left")
+        self.text = StringVar()
+        self.entry = Entry(self, width=30, textvariable=self.text)
+        self.entry.pack(side="right")
 
-lblName.pack(side="left")
-lblFirstname.pack(side="left")
-entName.pack(side="right")
-entFirstname.pack(side="right")
 
-okBtn = Button(btnFrame, text="OK",width=20)
-cancelBtn = Button(btnFrame, text="Cancel", width=20)
+class Application(Frame):
+    def __init__(self, master=None):
+        Frame.__init__(self, master)
+        self.pack()
+        master.focus = True
+        self.nameFrame = Rahmen(master, "Name:")
+        self.firstFrame = Rahmen(master, "Firstname:")
+        self.heightFrame = Rahmen(master, "Grösse:")
+        self.weightFrame = Rahmen(master, "Gewicht:")
+        self.btnFrame = Frame(master)
+        self.btnFrame.pack()
+        self.okBtn = Button(
+            self.btnFrame, text="OK", width=20)
+        self.okBtn['command'] = self.action
+        self.cancelBtn = Button(
+            self.btnFrame, text="Cancel", width=20, command=root.destroy)
+        self.okBtn.pack(side="left")
+        self.cancelBtn.pack(side="right")
 
-okBtn.pack(side="left")
-cancelBtn.pack(side="right")
+    def action(self):
+        print(self.nameFrame.text.get())
 
-master.mainloop()
+
+root = Tk()
+Application(master=root)
+root.mainloop()
