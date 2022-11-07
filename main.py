@@ -1,18 +1,7 @@
 from tkinter import *
+from constructors.lableFrame import *
 
 from health.bmicalculator import User, BmiCalculator
-
-
-class Rahmen(Frame):
-    def __init__(self, master=None, lblText=""):
-        Frame.__init__(self, master)
-        self.pack()
-        self.label = Label(self, text=lblText, width=30, anchor=W)
-        self.label.pack(side="left")
-        self.text = StringVar()
-        self.entry = Entry(self, width=30, textvariable=self.text)
-        self.entry.pack(side="right")
-
 
 def calculate(wh, hg):
     # weight = input("Gewicht in kg: ")
@@ -26,10 +15,10 @@ class Application(Frame):
         Frame.__init__(self, master)
         self.pack()
         master.focus = True
-        self.nameFrame = Rahmen(master, "Name:")
-        self.firstFrame = Rahmen(master, "Firstname:")
-        self.heightFrame = Rahmen(master, "Grösse:")
-        self.weightFrame = Rahmen(master, "Gewicht:")
+        self.nameFrame = MainFrame(master, "Name:", "left", "right", W)
+        self.firstFrame = MainFrame(master, "Firstname:", "left", "right", W)
+        self.heightFrame = MainFrame(master, "Grösse:", "left", "right", W)
+        self.weightFrame = MainFrame(master, "Gewicht:", "left", "right", W)
         self.btnFrame = Frame(master)
         self.btnFrame.pack()
         self.okBtn = Button(
